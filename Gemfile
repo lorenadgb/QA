@@ -20,3 +20,7 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :development, :test do
+  gem 'byebug', platform: :mri
+end
