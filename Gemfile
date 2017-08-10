@@ -5,6 +5,10 @@ gem 'rails', '4.0.13'
 
 gem 'pg'
 
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
 gem 'sass-rails', '~> 4.0.2'
 
 gem 'uglifier', '>= 1.3.0'
