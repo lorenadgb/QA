@@ -5,4 +5,5 @@ AppProva::Application.routes.draw do
   get  'pages/home', to: 'pages#home'
 
   resources :questions
+  resources :answers
 end

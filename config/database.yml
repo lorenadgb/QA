@@ -48,8 +48,9 @@ test:
   encoding: unicode
   database: appProva_test
   pool: 5
-  username: appProva
-  password:
+  username: pguser
+  password: password
+  host: localhost
 
 production:
   adapter: postgresql
