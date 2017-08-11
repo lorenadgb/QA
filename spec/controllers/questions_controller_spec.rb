@@ -5,11 +5,11 @@ RSpec.describe QuestionsController, type: :controller do
   let(:user) { FactoryGirl.create(:admin) }
 
   let(:valid_attributes) {
-    { content: 'Content of question number 1', year: 2017, source: 'wikipedia.com', user: user }
+    { content: 'Content of question number 1', year: 2017, source: 'wikipedia.com', status: QuestionStatus::PENDING, user: user }
   }
 
   let(:invalid_attributes) {
-    { content: nil, year: nil, source: ' ' }
+    { content: nil, year: nil, status: ' ', source: ' ' }
   }
 
   let(:valid_session) { {} }
@@ -81,7 +81,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { content: 'Content of question number 2', year: 2016, source: 'wikipedia.com', user: user }
+        { content: 'Content of question number 2', year: 2016, source: 'wikipedia.com', status: QuestionStatus::APPROVED, user: user }
       }
 
       it "updates the requested question" do
@@ -91,6 +91,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect(question.content).to eq('Content of question number 2')
         expect(question.year).to eq(2016)
         expect(question.source).to eq('wikipedia.com')
+        expect(question.status).to eq(QuestionStatus::APPROVED)
       end
 
       it "assigns the requested question as @question" do

@@ -6,6 +6,7 @@ RSpec.describe "questions/show", type: :view do
       :content => "Content",
       :source => "Source",
       :year => "Year",
+      :status => QuestionStatus::PENDING,
       :user => FactoryGirl.create(:admin)
     ))
   end
@@ -15,5 +16,6 @@ RSpec.describe "questions/show", type: :view do
     expect(rendered).to match(/Content/)
     expect(rendered).to match(/Source/)
     expect(rendered).to match(/Year/)
+    expect(rendered).to match(/Status/)
   end
 end

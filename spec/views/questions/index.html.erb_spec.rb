@@ -7,12 +7,14 @@ RSpec.describe "questions/index", type: :view do
         :content => "Content",
         :source => "Source",
         :year => 2017,
+        :status => QuestionStatus::PENDING,
         :user => FactoryGirl.create(:admin)
       ),
       Question.create!(
         :content => "Content",
         :source => "Source",
         :year => 2017,
+        :status => QuestionStatus::PENDING,
         :user => FactoryGirl.create(:visitor)
       )
     ])
@@ -23,5 +25,6 @@ RSpec.describe "questions/index", type: :view do
     assert_select "tr>td", :text => "Content".to_s, :count => 2
     assert_select "tr>td", :text => "Source".to_s, :count => 2
     assert_select "tr>td", :text => 2017.to_s, :count => 2
+    assert_select "tr>td", :text => "pending".to_s, :count => 2
   end
 end
