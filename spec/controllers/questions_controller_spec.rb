@@ -3,9 +3,12 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 
   let(:user) { FactoryGirl.create(:admin) }
+  let(:answers) { [FactoryGirl.attributes_for(:answer_1), FactoryGirl.attributes_for(:answer_2), FactoryGirl.attributes_for(:answer_3),
+                   FactoryGirl.attributes_for(:answer_4), FactoryGirl.attributes_for(:answer_5)] }
 
   let(:valid_attributes) {
-    { content: 'Content of question number 1', year: 2017, source: 'wikipedia.com', status: QuestionStatus::PENDING, user: user }
+    { content: 'Content of question number 1', year: 2017, source: 'wikipedia.com', status: QuestionStatus::PENDING,
+      answers_attributes: answers, user: user }
   }
 
   let(:invalid_attributes) {
@@ -102,7 +105,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it "redirects to the question" do
         question = Question.create! valid_attributes
-        put :update, {:id => question.to_param, :question => valid_attributes}, valid_session
+        put :update, {:id => question.to_param, :question => new_attributes}, valid_session
         expect(response).to redirect_to(question)
       end
     end

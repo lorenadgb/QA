@@ -5,6 +5,7 @@ describe Question do
 
   context "Relationships" do
     it { should belong_to :user }
+    it { should have_many :answers }
   end
 
   context "Validations" do
@@ -21,11 +22,23 @@ describe Question do
     end
   end
 
+  let :answers do
+    [
+        double(:answer),
+        double(:answer),
+        double(:answer),
+        double(:answer),
+        double(:answer)
+    ]
+  end
+
   context "#status" do
     before do
       subject.content = 'Content #1'
       subject.source  = 'wikipedia'
       subject.year    = 2017
+
+      allow(subject).to receive(:answers).and_return(answers)
 
       subject.save
     end

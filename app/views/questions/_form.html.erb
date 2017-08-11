@@ -26,6 +26,21 @@
     <%= f.number_field :year %>
   </div>
 
+  <h2>Questions</h2>
+  <%= f.fields_for :answers do |answer| %>
+      <div class="room_category_fields">
+        <div class="field">
+          <%= answer.label :correct %><br>
+          <%= answer.check_box :correct %>
+        </div>
+
+        <div class="field">
+          <%= answer.label :content %><br>
+          <%= answer.text_field :content %>
+        </div>
+      </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

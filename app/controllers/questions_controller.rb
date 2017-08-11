@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    Question.number_of_answers.times { @question.answers.build }
   end
 
   def edit
@@ -56,6 +57,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:user_id, :content, :source, :year, :status)
+    params.require(:question).permit(:user_id, :content, :source, :year, :status,
+                                     answers_attributes: [:id, :content, :correct])
   end
 end

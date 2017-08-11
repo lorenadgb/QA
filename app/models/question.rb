@@ -2,12 +2,19 @@ class Question < ActiveRecord::Base
   extend EnumerateIt
 
   belongs_to :user
-
-  validates :content, :source, :year, presence: true
+  has_many :answers, inverse_of: :question, dependent: :destroy
+  accepts_nested_attributes_for :answers
 
   has_enumeration_for :status, with: QuestionStatus, create_scopes: true
 
   before_create :set_default_status
+
+  validates :answers, length: { is: 5 }
+  validates :content, :source, :year, presence: true
+
+  def self.number_of_answers
+    5
+  end
 
   private
 

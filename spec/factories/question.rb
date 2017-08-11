@@ -6,6 +6,8 @@ FactoryGirl.define do
       year    Date.current.year
 
       association :user, factory: :admin
+
+      answers { [FactoryGirl.create(:answer_1), FactoryGirl.create(:answer_2), FactoryGirl.create(:answer_3), FactoryGirl.create(:answer_4), FactoryGirl.create(:answer_5)] }
     end
 
     factory :question_2 do
@@ -14,6 +16,8 @@ FactoryGirl.define do
       year    Date.current.last_year.year
 
       association :user, factory: :admin
+
+      answers { [FactoryGirl.create(:answer_1), FactoryGirl.create(:answer_2), FactoryGirl.create(:answer_3), FactoryGirl.create(:answer_4), FactoryGirl.create(:answer_5)] }
     end
   end
 end

@@ -2,10 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "questions/new", type: :view do
   before(:each) do
+    answers = [FactoryGirl.create(:answer_1), FactoryGirl.create(:answer_2), FactoryGirl.create(:answer_3),
+               FactoryGirl.create(:answer_4), FactoryGirl.create(:answer_5)]
+
     assign(:question, Question.new(
       :content => "Content",
       :source => "Source",
       :year => 2017,
+      :answers => answers,
       :user => FactoryGirl.create(:admin)
     ))
   end

@@ -2,11 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "questions/index", type: :view do
   before(:each) do
+    answers = [FactoryGirl.create(:answer_1), FactoryGirl.create(:answer_2), FactoryGirl.create(:answer_3),
+               FactoryGirl.create(:answer_4), FactoryGirl.create(:answer_5)]
+
     assign(:questions, [
       Question.create!(
         :content => "Content",
         :source => "Source",
         :year => 2017,
+        :answers => answers,
         :status => QuestionStatus::PENDING,
         :user => FactoryGirl.create(:admin)
       ),
@@ -14,6 +18,7 @@ RSpec.describe "questions/index", type: :view do
         :content => "Content",
         :source => "Source",
         :year => 2017,
+        :answers => answers,
         :status => QuestionStatus::PENDING,
         :user => FactoryGirl.create(:visitor)
       )
