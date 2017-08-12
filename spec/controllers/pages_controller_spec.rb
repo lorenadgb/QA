@@ -5,6 +5,7 @@ RSpec.describe PagesController, type: :controller do
   login_admin
 
   let(:user) { User.first }
+  let(:visitor) { FactoryGirl.create(:visitor) }
   let(:answers) { [FactoryGirl.attributes_for(:answer_1), FactoryGirl.attributes_for(:answer_2), FactoryGirl.attributes_for(:answer_3),
                    FactoryGirl.attributes_for(:answer_4), FactoryGirl.attributes_for(:answer_5)] }
 
@@ -31,6 +32,14 @@ RSpec.describe PagesController, type: :controller do
       question = Question.create! valid_attributes
       get :home, {}, valid_session
       expect(assigns(:questions)).to eq([question])
+    end
+
+    it "Only admin-user can see questions created by another non-admin users" do
+      Question.create! valid_attributes
+      sign_out user
+      sign_in visitor
+      get :home, {}, valid_session
+      expect(assigns(:questions)).to eq([])
     end
   end
 end

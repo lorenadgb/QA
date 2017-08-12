@@ -13,6 +13,8 @@ class Question < ActiveRecord::Base
   validates :answers, length: { is: 5 }
   validates :content, :source, :year, presence: true
 
+  scope :by_user_id, -> (user_id){ where(user_id: user_id) }
+
   def self.number_of_answers
     5
   end
