@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "questions/index", type: :view do
+RSpec.describe "pages/home", type: :view do
   before(:each) do
     answers = [FactoryGirl.create(:answer_1), FactoryGirl.create(:answer_2), FactoryGirl.create(:answer_3),
                FactoryGirl.create(:answer_4), FactoryGirl.create(:answer_5)]
@@ -26,7 +26,7 @@ RSpec.describe "questions/index", type: :view do
   end
 
   it "renders a list of questions" do
-    render
+    render 'questions/table', questions: Question.all
     assert_select "tr>td", :text => "Content".to_s, :count => 2
     assert_select "tr>td", :text => "Source".to_s, :count => 2
     assert_select "tr>td", :text => 2017.to_s, :count => 2

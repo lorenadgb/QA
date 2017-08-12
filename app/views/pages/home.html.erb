@@ -1,1 +1,23 @@
-<h1>Home Page</h1>
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+    <li role="presentation"><a href="#pending" aria-controls="pending" role="tab" data-toggle="tab">Pending</a></li>
+    <li role="presentation"><a href="#approved" aria-controls="messages" role="tab" data-toggle="tab">Approved</a></li>
+    <li role="presentation"><a href="#reproved" aria-controls="settings" role="tab" data-toggle="tab">Reproved</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="all">
+      <%= render 'questions/table', questions: @questions %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="pending">
+      <%= render 'questions/table', questions: @pending %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="approved">
+      <%= render 'questions/table', questions: @approved %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="reproved">
+      <%= render 'questions/table', questions: @reproved %>
+    </div>
+  </div>
+</div>

@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe QuestionsController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/questions").to route_to("questions#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/questions/new").to route_to("questions#new")
     end

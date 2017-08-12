@@ -19,14 +19,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all questions as @questions" do
-      question = Question.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:questions)).to eq([question])
-    end
-  end
-
   describe "GET #show" do
     it "assigns the requested question as @question" do
       question = Question.create! valid_attributes
