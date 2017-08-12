@@ -9,6 +9,7 @@ class Question < ActiveRecord::Base
 
   before_create :set_default_status
 
+  validate  :must_have_one_correct_answer
   validates :answers, length: { is: 5 }
   validates :content, :source, :year, presence: true
 
@@ -17,6 +18,10 @@ class Question < ActiveRecord::Base
   end
 
   private
+
+  def must_have_one_correct_answer
+    errors.add(:base, 'Must have one correct answer') unless self.answers.select { |answer| answer.correct }.count == 1
+  end
 
   def set_default_status
     self.status = QuestionStatus::PENDING

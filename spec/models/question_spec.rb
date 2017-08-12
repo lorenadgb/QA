@@ -24,11 +24,11 @@ describe Question do
 
   let :answers do
     [
-        double(:answer),
-        double(:answer),
-        double(:answer),
-        double(:answer),
-        double(:answer)
+        double(:answer, correct: true),
+        double(:answer, correct: false),
+        double(:answer, correct: false),
+        double(:answer, correct: false),
+        double(:answer, correct: false)
     ]
   end
 
@@ -59,6 +59,34 @@ describe Question do
       subject.send(:pending!)
 
       expect(subject.status).to eq QuestionStatus::PENDING
+    end
+  end
+
+  context "should validate presence of just one correct answer" do
+    let :invalid_answers do
+      [
+          double(:answer, correct: true),
+          double(:answer, correct: true),
+          double(:answer, correct: false),
+          double(:answer, correct: false),
+          double(:answer, correct: false)
+      ]
+    end
+
+    it 'valid answers' do
+      allow(subject).to receive(:answers).and_return(answers)
+
+      subject.valid?
+
+      expect(subject.errors[:base]).to_not include 'Must have one correct answer'
+    end
+
+    it 'should show message with invalid answers' do
+      allow(subject).to receive(:answers).and_return(invalid_answers)
+
+      subject.valid?
+
+      expect(subject.errors[:base]).to include 'Must have one correct answer'
     end
   end
 end
