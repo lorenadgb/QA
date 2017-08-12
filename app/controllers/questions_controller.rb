@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
   end
@@ -48,6 +49,12 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def require_same_user
+    if current_user != @question.user && !current_user.admin?
+      redirect_to pages_home_path
+    end
+  end
 
   def set_question
     @question = Question.find(params[:id])

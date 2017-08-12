@@ -40,6 +40,15 @@ RSpec.describe QuestionsController, type: :controller do
       get :edit, {:id => question.to_param}, valid_session
       expect(assigns(:question)).to eq(question)
     end
+
+    it "redirect edit attempt by another non-admin user" do
+      question = Question.create! valid_attributes
+      sign_out user
+      user = FactoryGirl.create(:visitor)
+      sign_in user
+      get :edit, {:id => question.to_param}, valid_session
+      expect(response).to redirect_to(pages_home_path)
+    end
   end
 
   describe "POST #create" do
