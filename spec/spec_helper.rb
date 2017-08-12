@@ -10,4 +10,8 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :view
+  config.extend Setup, :type => :controller
 end

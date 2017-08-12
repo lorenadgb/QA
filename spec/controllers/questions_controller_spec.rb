@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
 
-  let(:user) { FactoryGirl.create(:admin) }
+  login_admin
+
+  let(:user) { User.first }
   let(:answers) { [FactoryGirl.attributes_for(:answer_1), FactoryGirl.attributes_for(:answer_2), FactoryGirl.attributes_for(:answer_3),
                    FactoryGirl.attributes_for(:answer_4), FactoryGirl.attributes_for(:answer_5)] }
 
