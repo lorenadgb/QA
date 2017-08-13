@@ -9,6 +9,7 @@ class Question < ActiveRecord::Base
 
   before_create :set_default_status
 
+  validate :can_only_edit_a_reproved_question
   validate  :must_have_one_correct_answer
   validates :answers, length: { is: 5 }
   validates :content, :source, :year, presence: true
@@ -27,6 +28,10 @@ class Question < ActiveRecord::Base
 
   def set_default_status
     self.status = QuestionStatus::PENDING
+  end
+
+  def can_only_edit_a_reproved_question
+    errors.add(:base, 'Can only edit a reproved question') if (self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED)
   end
 
   def update_status(new_status)

@@ -20,6 +20,19 @@ describe Question do
 
       expect(subject.status).to eq QuestionStatus::PENDING
     end
+
+    it "before_save: can not edit an approved question" do
+      subject.content = 'Content #1'
+      subject.source  = 'wikipedia'
+      subject.year    = 2017
+      allow(subject).to receive(:answers).and_return(answers)
+      subject.save
+      subject.content = 'Content #2'
+
+      subject.valid?
+
+      expect(subject.errors[:base]).to eq ['Can only edit a reproved question']
+    end
   end
 
   let :answers do
