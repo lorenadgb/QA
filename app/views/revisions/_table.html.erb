@@ -1,0 +1,23 @@
+<h1>Listing revisions</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Comment</th>
+    <th>Status</th>
+    <th>Reviewer</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% revisions.each do |revision| %>
+      <tr>
+        <td><%= revision.comment %></td>
+        <td><%= revision.status %></td>
+        <td><%= revision.reviewer %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

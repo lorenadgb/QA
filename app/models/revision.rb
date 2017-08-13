@@ -8,4 +8,6 @@ class Revision < ActiveRecord::Base
   validates :status, presence: true
 
   delegate :user, to: :question
+
+  scope :by_question_id, -> (question_id){ where(question_id: question_id) }
 end

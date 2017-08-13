@@ -19,7 +19,7 @@ RSpec.describe RevisionsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new revision as @revision" do
-      get :new, {}, valid_session
+      get :new, { question_id: question.id }, valid_session
       expect(assigns(:revision)).to be_a_new(Revision)
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe RevisionsController, type: :controller do
 
       it "redirects to the created revision" do
         post :create, {:revision => valid_attributes}, valid_session
-        expect(response).to redirect_to(Revision.last)
+        expect(response).to redirect_to(new_revision_path)
       end
     end
 

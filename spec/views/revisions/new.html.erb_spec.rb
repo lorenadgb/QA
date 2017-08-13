@@ -2,11 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "revisions/new", type: :view do
   before(:each) do
-    assign(:revision, Revision.new(
+    question = FactoryGirl.create(:question_1)
+
+    assign(:revision, Revision.create(
       :comment => "MyText",
       :reviewer_id => nil,
-      :question => nil
+      :question => question
     ))
+
+    allow(@question).to receive(:there_is_at_least_one_revision).and_return(true)
+    allow(@question).to receive(:revisions).and_return([])
   end
 
   it "renders new revision form" do

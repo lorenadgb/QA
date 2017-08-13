@@ -20,6 +20,10 @@ class Question < ActiveRecord::Base
     5
   end
 
+  def there_is_at_least_one_revision
+    revisions.count > 0
+  end
+
   private
 
   def must_have_one_correct_answer
