@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers, inverse_of: :question, dependent: :destroy
   accepts_nested_attributes_for :answers
+  has_many :revisions, inverse_of: :question, dependent: :destroy
 
   has_enumeration_for :status, with: QuestionStatus, create_scopes: true
 

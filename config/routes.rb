@@ -6,4 +6,5 @@ AppProva::Application.routes.draw do
 
   resources :questions, except: [ :index ]
   resources :answers
+  resources :revisions, only: [ :new, :create ]
 end
