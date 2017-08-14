@@ -4,6 +4,8 @@ RSpec.describe RevisionsController, type: :controller do
 
   login_admin
 
+  let(:user) { User.first }
+
   let(:question) { FactoryGirl.create(:question_1, user: User.first) }
 
   let(:valid_attributes) {

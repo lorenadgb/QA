@@ -1,6 +1,5 @@
 class RevisionsController < ApplicationController
-  before_action :set_revision, only: [:show, :edit]
-  before_action :require_same_user, only: [:edit]
+  before_action :require_same_user, only: [:new]
 
   def new
     @revision = Revision.new
@@ -25,16 +24,14 @@ class RevisionsController < ApplicationController
   private
 
   def require_same_user
-    if current_user != @revision.user && !current_user.admin?
+    @question = Question.find(params[:question_id])
+
+    if current_user != @question.user && !current_user.admin?
       redirect_to pages_home_path
     end
   end
 
-    def set_revision
-      @revision = Revision.find(params[:id])
-    end
-
-    def revision_params
-      params.require(:revision).permit(:comment, :status, :reviewer_id, :question_id)
-    end
+  def revision_params
+    params.require(:revision).permit(:comment, :status, :reviewer_id, :question_id)
+  end
 end
