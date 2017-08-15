@@ -5,6 +5,8 @@
 
 <%= render 'form' %>
 
+<%= render 'questions/question', question: @question %>
+
 <% if @question.there_is_at_least_one_revision %>
   <%= render 'table', revisions: @question.revisions %>
 <% end %>
