@@ -8,6 +8,7 @@ class Revision < ActiveRecord::Base
   validates :status, presence: true
   validates :comment, presence: true, if: Proc.new { |r| r.status == RevisionStatus::REPROVED }
   validate  :user_has_permission?
+  validate  :can_change_the_status?
 
   delegate :user, to: :question
 
@@ -19,5 +20,15 @@ class Revision < ActiveRecord::Base
     unless reviewer.admin?
       errors.add(:base, 'Only admin-user can create a revision.')
     end
+  end
+
+  def can_change_the_status?
+    unless pending_question?
+      errors.add(:base, 'Can only edit the status of a pending question')
+    end
+  end
+
+  def pending_question?
+    self.question.status == QuestionStatus::PENDING
   end
 end

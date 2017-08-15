@@ -11,6 +11,7 @@ RSpec.describe Revision, type: :model do
   context "Validations" do
     before do
       allow(subject).to receive(:reviewer).and_return admin
+      allow(subject).to receive(:can_change_the_status?).and_return true
     end
 
     let :admin do
@@ -19,6 +20,14 @@ RSpec.describe Revision, type: :model do
 
     let :visitor do
       double(:reviewer, admin?: false)
+    end
+
+    let :pending_question do
+      double(:question, status: QuestionStatus::PENDING)
+    end
+
+    let :reproved_question do
+      double(:question, status: QuestionStatus::REPROVED)
     end
 
     it 'admin-users can create a revision' do
@@ -51,6 +60,33 @@ RSpec.describe Revision, type: :model do
       subject.save
 
       expect(subject.errors.full_messages).to eq []
+    end
+
+    it 'Can only change the status of a pending question' do
+      allow(subject).to receive(:can_change_the_status?).and_call_original
+      allow(subject).to receive(:question).and_return pending_question
+
+      subject.comment = 'Fix the question!'
+
+      subject.send(:can_change_the_status?)
+
+      subject.save
+
+      expect(subject.errors[:base]).to eq []
+    end
+
+    it 'Can not change the status of a not pending question' do
+      allow(subject).to receive(:can_change_the_status?).and_call_original
+      allow(subject).to receive(:question).and_return reproved_question
+
+      subject.comment = 'Fix the question!'
+      subject.status = QuestionStatus::APPROVED
+
+      subject.send(:can_change_the_status?)
+
+      subject.save
+
+      expect(subject.errors.full_messages).to eq ['Can only edit the status of a pending question']
     end
 
     it { should validate_presence_of :status }

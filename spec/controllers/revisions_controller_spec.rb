@@ -10,11 +10,11 @@ RSpec.describe RevisionsController, type: :controller do
 
   let(:valid_attributes) {
     { comment: 'There are some mistakes in the question. Please fix and submit again.', status: QuestionStatus::REPROVED,
-      reviewer: question.user, question: question }
+      reviewer: question.user, question: question, question_id: question.id }
   }
 
   let(:invalid_attributes) {
-    { comment: nil, status: ' ' }
+    { comment: nil, status: ' ', question_id: question.id }
   }
 
   let(:valid_session) { {} }
@@ -42,7 +42,7 @@ RSpec.describe RevisionsController, type: :controller do
 
       it "redirects to the created revision" do
         post :create, {:revision => valid_attributes}, valid_session
-        expect(response).to redirect_to(new_revision_path)
+        expect(response).to redirect_to(new_revision_path(question_id: question.id))
       end
     end
 
