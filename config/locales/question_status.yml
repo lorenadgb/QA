@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    question_status:
+      approved: Aprovada
+      pending: Pendente
+      reproved: Reprovada
