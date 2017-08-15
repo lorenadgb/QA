@@ -1,0 +1,18 @@
+<h1>
+  <small><%= t('activerecord.models.question.one') %></small>
+</h1>
+
+<strong>
+  #<%= question.id %><br/>
+  <%= question.content %>
+</strong>
+
+<br/>
+<% question.answers.each_with_index do |answer, index| %>
+  <dd><%= index +1 %>.
+    <%= answer.content %>
+    <% if answer.correct %>
+        <i class="fa fa-check" aria-hidden="true"></i>
+    <% end %>
+  </dd>
+<% end %>

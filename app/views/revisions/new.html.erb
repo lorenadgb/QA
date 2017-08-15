@@ -3,6 +3,8 @@
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
+<%= render 'questions/question', question: @question %>
+
 <%= render 'form' %>
 
 <% if @question.there_is_at_least_one_revision %>
