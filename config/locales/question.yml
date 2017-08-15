@@ -7,6 +7,7 @@ pt-BR:
 
     attributes:
       question:
+        id: ID
         content: Conteúdo
         created_at: Criado em
         source: Fonte
