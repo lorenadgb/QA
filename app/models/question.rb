@@ -26,6 +26,16 @@ class Question < ActiveRecord::Base
     revisions.count > 0
   end
 
+  def update_status(new_status)
+    if new_status    == QuestionStatus::APPROVED
+      approved!
+    elsif new_status == QuestionStatus::REPROVED
+      reproved!
+    elsif new_status == QuestionStatus::PENDING
+      pending!
+    end
+  end
+
   private
 
   def must_have_one_correct_answer
@@ -38,16 +48,6 @@ class Question < ActiveRecord::Base
 
   def can_only_edit_a_reproved_question
     errors.add(:base, I18n.translate('activerecord.errors.messages.can_only_edit_a_reproved_question')) if (self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED)
-  end
-
-  def update_status(new_status)
-    if new_status    == QuestionStatus::APPROVED
-      approved!
-    elsif new_status == QuestionStatus::REPROVED
-      reproved!
-    elsif new_status == QuestionStatus::PENDING
-      pending!
-    end
   end
 
   def approved!

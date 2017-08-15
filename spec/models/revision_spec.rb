@@ -65,8 +65,10 @@ RSpec.describe Revision, type: :model do
     it 'Can only change the status of a pending question' do
       allow(subject).to receive(:can_change_the_status?).and_call_original
       allow(subject).to receive(:question).and_return pending_question
+      allow(subject.question).to receive(:update_status).and_return true
 
       subject.comment = 'Fix the question!'
+      subject.status = RevisionStatus::APPROVED
 
       subject.send(:can_change_the_status?)
 

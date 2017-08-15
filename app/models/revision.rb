@@ -25,6 +25,8 @@ class Revision < ActiveRecord::Base
   def can_change_the_status?
     unless pending_question?
       errors.add(:base, I18n.translate('activerecord.errors.messages.can_change_the_status'))
+    else
+      self.question.update_status(self.status)
     end
   end
 
