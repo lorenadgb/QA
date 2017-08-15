@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      revision:
+        one: Revisão
+        other: Revisões
+
+    attributes:
+      revision:
+        comment: Comentário
+        reviewer: Revisor(a)

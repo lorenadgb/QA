@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      answer:
+        one: Resposta
+        other: Respostas
+
+    attributes:
+      answer:
+        content: Conteúdo
+        correct: Correta
+        question: Questão

@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      question:
+        one: Questão
+        other: Questões
+
+    attributes:
+      question:
+        content: Conteúdo
+        source: Fonte
+        year: Ano
