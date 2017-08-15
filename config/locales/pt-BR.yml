@@ -1,4 +1,6 @@
 pt-BR:
+  profile: 'Perfil'
+  settings: 'Configurações de perfil'
   activerecord:
     errors:
       messages:
