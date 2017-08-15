@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'enumerate_it'
+gem 'simple_form'
 
 group :doc do
   gem 'sdoc', require: false
