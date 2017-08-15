@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require twitter/bootstrap
 //= require turbolinks
+//= require jquery.mask
 //= require_tree .

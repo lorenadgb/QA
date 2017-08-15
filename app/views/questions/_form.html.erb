@@ -17,7 +17,7 @@
       <%= f.input :source %>
     </div>
     <div class="col-xs-4">
-      <%= f.input :year %>
+      <%= f.input :year, placeholder: '9999' %>
     </div>
   </div>
 
@@ -39,3 +39,7 @@
   <%= f.button :submit %>
 
 <% end %>
+
+<script>
+  $('#question_year').mask('0000');
+</script>
