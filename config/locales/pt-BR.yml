@@ -9,6 +9,10 @@ pt-BR:
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
+        can_change_the_status: Não pode modificar o status de uma questão aprovada
+        can_only_edit_a_reproved_question: Permitido edição apenas de questões reprovadas
+        must_have_one_correct_answer: Deve haver somente uma questão correta
+        user_has_permission: Apenas administradores podem criar revisões
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes

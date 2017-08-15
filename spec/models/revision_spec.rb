@@ -43,7 +43,7 @@ RSpec.describe Revision, type: :model do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to include 'Only admin-user can create a revision.'
+      expect(subject.errors[:base]).to include 'Apenas administradores podem criar revisões'
     end
 
     it 'comment can not be blank if revision status is reproved' do
@@ -72,7 +72,7 @@ RSpec.describe Revision, type: :model do
 
       subject.save
 
-      expect(subject.errors[:base]).to eq ['Can not change status of an approved question']
+      expect(subject.errors[:base]).to eq ['Não pode modificar o status de uma questão aprovada']
     end
 
     it 'Can change the status of a not approved question' do

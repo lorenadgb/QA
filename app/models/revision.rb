@@ -18,13 +18,13 @@ class Revision < ActiveRecord::Base
 
   def user_has_permission?
     unless reviewer.admin?
-      errors.add(:base, 'Only admin-user can create a revision.')
+      errors.add(:base, I18n.translate('activerecord.errors.messages.user_has_permission'))
     end
   end
 
   def can_change_the_status?
     if approved_question?
-      errors.add(:base, 'Can not change status of an approved question')
+      errors.add(:base, I18n.translate('activerecord.errors.messages.can_change_the_status'))
     end
   end
 
