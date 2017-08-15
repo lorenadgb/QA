@@ -24,11 +24,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'enumerate_it'
 gem 'simple_form'
-<<<<<<< HEAD
-=======
-gem 'will_paginate'
 gem 'jquery_mask_rails'
->>>>>>> 04911ac... Gemfile: Add jquery_mask_rails  gem
 
 group :doc do
   gem 'sdoc', require: false
