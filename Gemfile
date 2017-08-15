@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'enumerate_it'
 gem 'simple_form'
+gem 'jquery_mask_rails'
 
 group :doc do
   gem 'sdoc', require: false
