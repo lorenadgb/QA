@@ -9,6 +9,8 @@ class RevisionsController < ApplicationController
 
   def create
     @revision = Revision.new(revision_params)
+    @revision.reviewer_id = current_user.id
+    @question = @revision.question
 
     respond_to do |format|
       if @revision.save

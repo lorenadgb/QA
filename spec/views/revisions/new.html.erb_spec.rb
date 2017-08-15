@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "revisions/new", type: :view do
   before(:each) do
+    RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
+
     question = FactoryGirl.create(:question_1)
+    reviewer = User.first
 
     assign(:revision, Revision.create(
       :comment => "MyText",
-      :reviewer_id => nil,
+      :reviewer_id => reviewer.id,
       :question => question
     ))
 
