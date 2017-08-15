@@ -7,5 +7,6 @@ pt-BR:
 
     attributes:
       revision:
+        id: ID
         comment: Comentário
         reviewer: Revisor(a)

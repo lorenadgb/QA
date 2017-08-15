@@ -1,5 +1,9 @@
 pt-BR:
+  all: Todas
+  approved: Aprovadas
+  pending: Pendentes
   profile: 'Perfil'
+  reproved: Reprovadas
   settings: 'Configurações de perfil'
   activerecord:
     errors:
