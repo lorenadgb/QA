@@ -16,6 +16,8 @@ class Question < ActiveRecord::Base
 
   scope :by_user_id, -> (user_id){ where(user_id: user_id) }
 
+  default_scope { order(created_at: :desc) }
+
   def self.number_of_answers
     5
   end
