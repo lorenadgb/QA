@@ -14,10 +14,10 @@
     <small><%= t('activerecord.models.revision.one') %></small>
   </h1>
 
-  <%= f.input :comment %>
+  <%= f.input :comment, readonly: !current_user.admin? %>
   <div class="row">
     <div class="col-xs-3">
-      <%= f.input :status, collection: RevisionStatus, include_blank: false %><br>
+      <%= f.input :status, collection: RevisionStatus, include_blank: false, readonly: !current_user.admin? %><br>
     </div>
   </div>
 

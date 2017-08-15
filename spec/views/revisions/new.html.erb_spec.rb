@@ -5,6 +5,9 @@ RSpec.describe "revisions/new", type: :view do
     RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
 
     @question = question = FactoryGirl.create(:question_1)
+
+    sign_in User.first
+
     reviewer = User.first
 
     assign(:revision, Revision.create(
