@@ -17,9 +17,9 @@ RSpec.describe "questions/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Content/)
-    expect(rendered).to match(/Source/)
-    expect(rendered).to match(/Year/)
+    expect(rendered).to match(/Conteúdo/)
+    expect(rendered).to match(/Fonte/)
+    expect(rendered).to match(/Ano/)
     expect(rendered).to match(/Status/)
   end
 end

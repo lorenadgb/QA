@@ -51,7 +51,7 @@ RSpec.describe Revision, type: :model do
 
       subject.save
 
-      expect(subject.errors.full_messages).to eq ["Comment can't be blank"]
+      expect(subject.errors.full_messages).to eq ["Comentário não pode ficar em branco"]
     end
 
     it 'comment can be blank if revision status is approved' do

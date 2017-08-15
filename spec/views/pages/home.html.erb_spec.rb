@@ -30,6 +30,6 @@ RSpec.describe "pages/home", type: :view do
     assert_select "tr>td", :text => "Content".to_s, :count => 2
     assert_select "tr>td", :text => "Source".to_s, :count => 2
     assert_select "tr>td", :text => 2017.to_s, :count => 2
-    assert_select "tr>td", :text => "pending".to_s, :count => 2
+    assert_select "tr>td", :text => "Pendente".to_s, :count => 2
   end
 end
