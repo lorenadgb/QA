@@ -13,6 +13,7 @@ pt-BR:
       destroy: 'Deletar'
       new: 'Novo'
       edit: 'Editar'
+      revision: 'Revisão'
     titles:
       edit: "Editar %{model}"
       save: "Salvar %{model}"

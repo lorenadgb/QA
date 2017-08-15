@@ -141,7 +141,7 @@ RSpec.describe QuestionsController, type: :controller do
     it "redirects to the questions list" do
       question = Question.create! valid_attributes
       delete :destroy, {:id => question.to_param}, valid_session
-      expect(response).to redirect_to(questions_url)
+      expect(response).to redirect_to(pages_home_path)
     end
   end
 

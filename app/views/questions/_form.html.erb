@@ -1,4 +1,5 @@
-<%= form_for(@question) do |f| %>
+<%= simple_form_for @question do |f| %>
+
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,37 +12,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+  <%= f.input :content %>
+  <div class="row">
+    <div class="col-xs-8">
+      <%= f.input :source %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input :year %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :source %><br>
-    <%= f.text_field :source %>
+  <h1>
+    <small><%= t('activerecord.models.answer.other') %></small>
+  </h1>
+
+  <%= f.simple_fields_for :answers do |answer| %>
+  <div class="row">
+    <div class="col-xs-1">
+      <%= answer.input :correct, as: :radio_buttons, checked: false %>
+    </div>
+    <div class="col-xs-11">
+      <%= answer.input :content %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
-  </div>
-
-  <h2>Questions</h2>
-  <%= f.fields_for :answers do |answer| %>
-      <div class="room_category_fields">
-        <div class="field">
-          <%= answer.label :correct %><br>
-          <%= answer.check_box :correct %>
-        </div>
-
-        <div class="field">
-          <%= answer.label :content %><br>
-          <%= answer.text_field :content %>
-        </div>
-      </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit %>
+
 <% end %>
