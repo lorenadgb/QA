@@ -1,20 +1,26 @@
-<h1>Listing revisions</h1>
+<%- model_class = Revision -%>
 
-<table>
+<h1>
+  <small><%= t('activerecord.models.revision.other') %></small>
+</h1>
+
+<table class="table table-striped">
   <thead>
   <tr>
-    <th>Comment</th>
-    <th>Status</th>
-    <th>Reviewer</th>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:comment) %></th>
+    <th><%= model_class.human_attribute_name(:status) %></th>
+    <th><%= model_class.human_attribute_name(:reviewer) %></th>
   </tr>
   </thead>
 
   <tbody>
   <% revisions.each do |revision| %>
       <tr>
+        <td><%= revision.id %></td>
         <td><%= revision.comment %></td>
-        <td><%= revision.status %></td>
-        <td><%= revision.reviewer %></td>
+        <td><%= revision.status_humanize %></td>
+        <td><%= revision.reviewer.to_s %></td>
       </tr>
   <% end %>
   </tbody>
