@@ -14,7 +14,7 @@ class RevisionsController < ApplicationController
 
     respond_to do |format|
       if @revision.save
-        format.html { redirect_to new_revision_path(question_id: @revision.question_id), notice: 'Revision was successfully created.' }
+        format.html { redirect_to new_revision_path(question_id: @revision.question_id), notice: t('flash.successful_created', name: Revision.model_name.human) }
         format.json { render action: 'new', status: :created, location: @revision }
       else
         format.html { render action: 'new' }
