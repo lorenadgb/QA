@@ -29,7 +29,7 @@ class Question < ActiveRecord::Base
   private
 
   def must_have_one_correct_answer
-    errors.add(:base, 'Must have one correct answer') unless self.answers.select { |answer| answer.correct }.count == 1
+    errors.add(:base, I18n.translate('activerecord.errors.messages.must_have_one_correct_answer')) unless self.answers.select { |answer| answer.correct }.count == 1
   end
 
   def set_default_status
@@ -37,7 +37,7 @@ class Question < ActiveRecord::Base
   end
 
   def can_only_edit_a_reproved_question
-    errors.add(:base, 'Can only edit a reproved question') if (self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED)
+    errors.add(:base, I18n.translate('activerecord.errors.messages.can_only_edit_a_reproved_question')) if (self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED)
   end
 
   def update_status(new_status)

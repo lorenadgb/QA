@@ -32,7 +32,7 @@ describe Question do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to eq ['Can only edit a reproved question']
+      expect(subject.errors[:base]).to eq ['Permitido edição apenas de questões reprovadas']
     end
   end
 
@@ -92,7 +92,7 @@ describe Question do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to_not include 'Must have one correct answer'
+      expect(subject.errors[:base]).to_not include 'Deve haver somente uma questão correta'
     end
 
     it 'should show message with invalid answers' do
@@ -100,7 +100,7 @@ describe Question do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to include 'Must have one correct answer'
+      expect(subject.errors[:base]).to include 'Deve haver somente uma questão correta'
     end
   end
 end
