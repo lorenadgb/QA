@@ -23,10 +23,6 @@ RSpec.describe "revisions/new", type: :view do
     assert_select "form[action=?][method=?]", revisions_path, "post" do
 
       assert_select "textarea#revision_comment[name=?]", "revision[comment]"
-
-      assert_select "input#revision_reviewer_id[name=?]", "revision[reviewer_id]"
-
-      assert_select "input#revision_question_id[name=?]", "revision[question_id]"
     end
   end
 end
