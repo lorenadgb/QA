@@ -37,6 +37,22 @@ RSpec.describe Revision, type: :model do
       expect(subject.errors[:base]).to include 'Only admin-user can create a revision.'
     end
 
+    it 'comment can not be blank if revision status is reproved' do
+      subject.status = RevisionStatus::REPROVED
+
+      subject.save
+
+      expect(subject.errors.full_messages).to eq ["Comment can't be blank"]
+    end
+
+    it 'comment can be blank if revision status is approved' do
+      subject.status = RevisionStatus::APPROVED
+
+      subject.save
+
+      expect(subject.errors.full_messages).to eq []
+    end
+
     it { should validate_presence_of :status }
   end
 

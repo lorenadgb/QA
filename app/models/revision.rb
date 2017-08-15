@@ -6,6 +6,7 @@ class Revision < ActiveRecord::Base
   has_enumeration_for :status, with: RevisionStatus, create_scopes: true
 
   validates :status, presence: true
+  validates :comment, presence: true, if: Proc.new { |r| r.status == RevisionStatus::REPROVED }
   validate  :user_has_permission?
 
   delegate :user, to: :question
