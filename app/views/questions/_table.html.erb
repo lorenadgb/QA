@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:content) %></th>
       <th><%= model_class.human_attribute_name(:source) %></th>
       <th><%= model_class.human_attribute_name(:year) %></th>
+      <th><%= model_class.human_attribute_name(:user) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -20,6 +21,7 @@
         <td><%= question.content %></td>
         <td><%= question.source %></td>
         <td><%= question.year %></td>
+        <td><%= question.user %></td>
         <td><%= question.status_humanize %></td>
         <td>
           <%= link_to t('.edit', default: t("helpers.links.edit")),

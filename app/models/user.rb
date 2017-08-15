@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :questions, inverse_of: :user, dependent: :destroy
   has_many :revisions, inverse_of: :user, dependent: :destroy, foreign_key: :reviewer_id
+
+  def to_s
+    "#{email}"
+  end
 end
