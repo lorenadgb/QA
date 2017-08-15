@@ -1,0 +1,5 @@
+pt-BR:
+  enumerations:
+    revision_status:
+      approved: Aprovada
+      reproved: Reprovada
