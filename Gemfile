@@ -41,3 +41,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4.2'
   gem 'pry'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
