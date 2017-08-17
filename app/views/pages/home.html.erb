@@ -11,10 +11,10 @@
       <%= render 'questions/table', questions: @questions %>
     </div>
     <div role="tabpanel" class="tab-pane" id="pending">
-      <%= render 'questions/table', questions: @pending %>
+      <%= render 'questions/table', questions: @approved %>
     </div>
     <div role="tabpanel" class="tab-pane" id="approved">
-      <%= render 'questions/table', questions: @approved %>
+      <%= render 'questions/table', questions: @pending %>
     </div>
     <div role="tabpanel" class="tab-pane" id="reproved">
       <%= render 'questions/table', questions: @reproved %>
