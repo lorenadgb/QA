@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   has_enumeration_for :status, with: QuestionStatus, create_scopes: true
 
   before_create :set_default_status
+  before_save :set_status
 
   validate :can_only_edit_a_reproved_question
   validate  :must_have_one_correct_answer
@@ -43,6 +44,10 @@ class Question < ActiveRecord::Base
   end
 
   def set_default_status
+    self.status = QuestionStatus::PENDING
+  end
+
+  def set_status
     self.status = QuestionStatus::PENDING
   end
 

@@ -87,18 +87,18 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { content: 'Content of question number 2', year: 2016, source: 'wikipedia.com', status: QuestionStatus::APPROVED, user: user }
+        { content: 'Content of question number 2', year: 2016, source: 'wikipedia.com', user: user }
       }
 
       it "updates the requested question" do
         question = Question.create! valid_attributes
-        question.update_attribute :status, 'reproved'
+        Revision.create!(reviewer: user, question: question, comment: 'Fix the question', status: 'reproved')
         put :update, {:id => question.to_param, :question => new_attributes}, valid_session
         question.reload
         expect(question.content).to eq('Content of question number 2')
         expect(question.year).to eq(2016)
         expect(question.source).to eq('wikipedia.com')
-        expect(question.status).to eq(QuestionStatus::APPROVED)
+        expect(question.status).to eq(QuestionStatus::PENDING)
       end
 
       it "assigns the requested question as @question" do
@@ -109,7 +109,9 @@ RSpec.describe QuestionsController, type: :controller do
 
       it "redirects to the question" do
         question = Question.create! valid_attributes
-        question.update_attribute :status, 'reproved'
+        Revision.create!(reviewer: user, question: question, comment: 'Fix the question', status: 'reproved')
+        put :update, {:id => question.to_param, :question => new_attributes}, valid_session
+        question.reload
         put :update, {:id => question.to_param, :question => new_attributes}, valid_session
         expect(response).to redirect_to(question)
       end
