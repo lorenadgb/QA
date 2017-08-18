@@ -18,7 +18,7 @@
   <% revisions.each do |revision| %>
       <tr>
         <td><%= revision.id %></td>
-        <td><%= truncate(revision.comment, length: 40) %></td>
+        <td><%= truncate_with_hover(revision.comment, length: 40) %></td>
         <td><%= revision.status_humanize %></td>
         <td><%= revision.reviewer %></td>
       </tr>

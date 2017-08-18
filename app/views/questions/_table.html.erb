@@ -18,10 +18,10 @@
     <% questions.each do |question| %>
       <tr>
         <td><%= link_to question.id, question_path(question) %></td>
-        <td><%= truncate(question.content, length: 20) %></td>
-        <td><%= truncate(question.source, length: 20) %></td>
+        <td><%= truncate_with_hover(question.content.html_safe) %></td>
+        <td><%= truncate_with_hover(question.source) %></td>
         <td><%= question.year %></td>
-        <td><%= truncate(question.user.email, length: 20) %></td>
+        <td><%= truncate_with_hover(question.user.email) %></td>
         <td><%= question.status_humanize %></td>
         <td>
           <%= link_to t('.edit', default: t("helpers.links.edit")),
