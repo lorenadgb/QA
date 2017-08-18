@@ -76,11 +76,11 @@ describe Question do
     end
   end
 
-  context "should validate presence of just one correct answer" do
+  context "should validate presence of at least one correct answer" do
     let :invalid_answers do
       [
-          double(:answer, correct: true),
-          double(:answer, correct: true),
+          double(:answer, correct: false),
+          double(:answer, correct: false),
           double(:answer, correct: false),
           double(:answer, correct: false),
           double(:answer, correct: false)
@@ -92,7 +92,7 @@ describe Question do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to_not include 'Deve haver somente uma questão correta'
+      expect(subject.errors[:base]).to_not include 'Deve haver ao menos uma questão correta'
     end
 
     it 'should show message with invalid answers' do
@@ -100,7 +100,7 @@ describe Question do
 
       subject.valid?
 
-      expect(subject.errors[:base]).to include 'Deve haver somente uma questão correta'
+      expect(subject.errors[:base]).to include 'Deve haver ao menos uma questão correta'
     end
   end
 end

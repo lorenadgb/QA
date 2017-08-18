@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   before_save :set_status
 
   validate :can_only_edit_a_reproved_question
-  validate  :must_have_one_correct_answer
+  validate  :at_least_one_correct_answer
   validates :answers, length: { is: 5 }
   validates :content, :source, :year, presence: true
 
@@ -39,8 +39,8 @@ class Question < ActiveRecord::Base
 
   private
 
-  def must_have_one_correct_answer
-    errors.add(:base, I18n.translate('activerecord.errors.messages.must_have_one_correct_answer')) unless self.answers.select { |answer| answer.correct }.count == 1
+  def at_least_one_correct_answer
+    errors.add(:base, I18n.translate('activerecord.errors.messages.at_least_one_correct_answer')) if self.answers.select { |answer| answer.correct }.count == 0
   end
 
   def set_default_status

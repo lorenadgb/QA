@@ -11,7 +11,7 @@ pt-BR:
         record_invalid: 'A validação falhou: %{errors}'
         can_change_the_status: Pode modificar apenas o status de questões pendentes
         can_only_edit_a_reproved_question: Permitido edição apenas de questões reprovadas
-        must_have_one_correct_answer: Deve haver somente uma questão correta
+        at_least_one_correct_answer: Deve haver ao menos uma questão correta
         user_has_permission: Apenas administradores podem criar revisões
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente

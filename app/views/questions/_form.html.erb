@@ -28,7 +28,7 @@
   <%= f.simple_fields_for :answers do |answer| %>
   <div class="row">
     <div class="col-xs-1">
-      <%= answer.input :correct, as: :radio_buttons, checked: false %>
+      <%= answer.input :correct, as: :radio_buttons %>
     </div>
     <div class="col-xs-11">
       <%= answer.input :content %>
