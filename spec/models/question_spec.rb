@@ -58,19 +58,19 @@ describe Question do
     end
 
     it 'update status to approved' do
-      subject.send(:approved!)
+      subject.send(:update_status, QuestionStatus::APPROVED)
 
       expect(subject.status).to eq QuestionStatus::APPROVED
     end
 
     it 'update status to reproved' do
-      subject.send(:reproved!)
+      subject.send(:update_status, QuestionStatus::REPROVED)
 
       expect(subject.status).to eq QuestionStatus::REPROVED
     end
 
     it 'update status to pending' do
-      subject.send(:pending!)
+      subject.send(:update_status, QuestionStatus::PENDING)
 
       expect(subject.status).to eq QuestionStatus::PENDING
     end

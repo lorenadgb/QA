@@ -24,19 +24,15 @@ class Question < ActiveRecord::Base
   end
 
   def update_status(new_status)
-    if new_status    == QuestionStatus::APPROVED
-      approved!
-    elsif new_status == QuestionStatus::REPROVED
-      reproved!
-    elsif new_status == QuestionStatus::PENDING
-      pending!
-    end
+    update_column :status, new_status
   end
 
   private
 
   def at_least_one_correct_answer
-    errors.add(:base, I18n.translate('activerecord.errors.messages.at_least_one_correct_answer')) if self.answers.select { |answer| answer.correct }.count == 0
+    if self.answers.select { |answer| answer.correct }.count == 0
+      errors.add(:base, I18n.translate('activerecord.errors.messages.at_least_one_correct_answer'))
+    end
   end
 
   def set_status
@@ -44,18 +40,8 @@ class Question < ActiveRecord::Base
   end
 
   def can_only_edit_a_reproved_question
-    errors.add(:base, I18n.translate('activerecord.errors.messages.can_only_edit_a_reproved_question')) if (self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED)
-  end
-
-  def approved!
-    update_column :status, QuestionStatus::APPROVED
-  end
-
-  def reproved!
-    update_column :status, QuestionStatus::REPROVED
-  end
-
-  def pending!
-    update_column :status, QuestionStatus::PENDING
+    if self.persisted? && self.changed? && self.status_was != QuestionStatus::REPROVED
+      errors.add(:base, I18n.translate('activerecord.errors.messages.can_only_edit_a_reproved_question'))
+    end
   end
 end
