@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
 
   has_enumeration_for :status, with: QuestionStatus, create_scopes: true
 
-  before_create :set_default_status
   before_save :set_status
 
   validate :can_only_edit_a_reproved_question
@@ -41,10 +40,6 @@ class Question < ActiveRecord::Base
 
   def at_least_one_correct_answer
     errors.add(:base, I18n.translate('activerecord.errors.messages.at_least_one_correct_answer')) if self.answers.select { |answer| answer.correct }.count == 0
-  end
-
-  def set_default_status
-    self.status = QuestionStatus::PENDING
   end
 
   def set_status

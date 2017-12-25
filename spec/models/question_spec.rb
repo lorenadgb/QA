@@ -16,8 +16,8 @@ describe Question do
   end
 
   context "Callbacks" do
-    it "before_create: set status to pending" do
-      subject.run_callbacks(:create) { true }
+    it "before_update: set status to pending" do
+      subject.run_callbacks(:save) { true }
 
       expect(subject.status).to eq QuestionStatus::PENDING
     end
