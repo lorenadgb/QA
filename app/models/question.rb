@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  NUMBER_OF_ANSWERS = 5
 
   belongs_to :user
   has_many :answers, inverse_of: :question, dependent: :destroy
@@ -17,10 +18,6 @@ class Question < ActiveRecord::Base
   scope :by_user_id, -> (user_id){ where(user_id: user_id) }
 
   default_scope { order(created_at: :desc) }
-
-  def self.number_of_answers
-    5
-  end
 
   def there_is_at_least_one_revision
     revisions.count > 0

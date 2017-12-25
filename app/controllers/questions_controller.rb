@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    Question.number_of_answers.times { @question.answers.build }
+    Question::NUMBER_OF_ANSWERS.times { @question.answers.build }
   end
 
   def edit
